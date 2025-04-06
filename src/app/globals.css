@@ -4,21 +4,36 @@
     --background: #202020;
     --foreground: #ededed;
     --accent: #ffb629;
+    --green: #48d300;
+    --red: #ff0000;
 }
 
 body {
     background: var(--background);
     color: var(--foreground);
+    font-weight: 500;
 }
 
-.margin-align {
-    margin: auto;
+h1 {
+    font-weight: 600;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+.accent {
+    color: var(--accent);
 }
 
 .flex-align {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.flex-no-align {
+    display: flex;
     height: 100%;
     width: 100%;
 }

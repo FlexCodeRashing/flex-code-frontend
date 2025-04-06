@@ -1,32 +1,67 @@
 .login-card {
     border-radius: 2rem;
-    height: 35rem;
-    width: 45rem;
+    height: auto;
+    width: 40rem;
     border: .15rem solid var(--foreground);
+    padding: 1.5rem;
 }
 
-/*.login-card__form {*/
-/*    width: 80%;*/
-/*}*/
+hr {
+    border: 0;
+    height: .05rem;
+    background: var(--foreground);
+    width: 100%;
+    margin: 1.5rem 0;
+}
+
+h1 {
+    margin-bottom: 1.5rem;
+}
+
+.login-card__form {
+    height: 100%;
+    width: 100%;
+    gap: 1.5rem;
+}
 
 .login-card__input {
     height: 3rem;
-    width: 60%;
+    width: 100%;
     border-radius: .5rem;
     border: .12rem solid var(--foreground);
     padding: .7rem;
 }
 
 .login-card__button {
-    height: 3rem;
+    height: 3.5rem;
     width: 60%;
     border-radius: .5rem;
-    padding: .7rem;
+    padding: .5rem;
     color: var(--background);
     background-color: var(--accent);
     font-size: 1.2rem;
+    border: .1rem solid var(--accent);
 }
 
-.login-card__button:hover {
+.login-card__button:hover:enabled {
     filter: brightness(85%);
+}
+
+.login-card__button:disabled {
+    /*filter: brightness(85%);*/
+    background: transparent;
+    color: var(--foreground);
+}
+
+.login-card__validation-icon {
+    height: 2rem;
+    width: 2rem;
+}
+
+.login-card__validation-icon-green {
+    filter: invert(58%) sepia(84%) saturate(799%) hue-rotate(54deg) brightness(95%) contrast(112%);
+}
+
+.login-card__validation-icon-red {
+    filter: invert(16%) sepia(100%) saturate(7493%) hue-rotate(7deg) brightness(109%) contrast(117%);
 }
