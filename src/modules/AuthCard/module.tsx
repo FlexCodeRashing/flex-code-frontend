@@ -59,7 +59,7 @@ export default function Module({type = "login"}: ModuleProps) {
             <ValidationCriteria text={"Содержит хотя бы одну строчную букву"} value={is_contain_lower}/>
             <ValidationCriteria text={"Содержит хотя бы одну цифру"} value={is_contain_digits}/>
             <ValidationCriteria text={"Пароли совпадают"} value={is_passwords_match}/>
-        </>, is_passwords_match && is_length && is_contain_upper]
+        </>, is_passwords_match && is_length && is_contain_upper && is_contain_lower && is_contain_digits]
     }
 
     const [validation_password_component, validation_password] = validate_password(password, repeatPassword);
