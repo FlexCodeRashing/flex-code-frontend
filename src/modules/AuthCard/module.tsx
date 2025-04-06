@@ -91,7 +91,7 @@ export default function Module({type = "login"}: ModuleProps) {
                 onChange={e => setEmail(e.target.value)}
                 value={email}
             />
-            {!validation_email && <div className={"w-full"}>
+            {type === "register" && !validation_email && <div className={"w-full"}>
                 {validation_email_component}
             </div>}
             <input
