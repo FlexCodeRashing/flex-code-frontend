@@ -1,0 +1,32 @@
+.login-card {
+    border-radius: 2rem;
+    height: 35rem;
+    width: 45rem;
+    border: .15rem solid var(--foreground);
+}
+
+/*.login-card__form {*/
+/*    width: 80%;*/
+/*}*/
+
+.login-card__input {
+    height: 3rem;
+    width: 60%;
+    border-radius: .5rem;
+    border: .12rem solid var(--foreground);
+    padding: .7rem;
+}
+
+.login-card__button {
+    height: 3rem;
+    width: 60%;
+    border-radius: .5rem;
+    padding: .7rem;
+    color: var(--background);
+    background-color: var(--accent);
+    font-size: 1.2rem;
+}
+
+.login-card__button:hover {
+    filter: brightness(85%);
+}
