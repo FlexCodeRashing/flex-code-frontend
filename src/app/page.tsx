@@ -1,6 +1,8 @@
+"use server"
+
 import React from "react";
 
-export default function Page() {
+export default async function Page() {
     return <>
         Hello world
     </>
