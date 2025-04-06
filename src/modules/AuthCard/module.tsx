@@ -41,11 +41,23 @@ export default function Module({type = "login"}: ModuleProps) {
         console.log(formData.get("password"))
     }
 
-    function validate_email(email: string): string {
-        return "";
+    function validate_email(email: string): [React.ReactNode, boolean] {
+        const split_at = email.split("@");
+        const is_contain_at = split_at.length === 2 && email.split("@")[0].length > 0 && email.split("@")[1].length > 0;
+        let is_contain_dot = false;
+        if (is_contain_at) {
+            const split_dot = split_at[1].split(".")
+            is_contain_dot = split_dot.length === 2 && split_dot[0].length > 0 && split_dot[1].length > 0;
+        }
+        const is_not_contain_spaces = !email.includes(" ");
+
+        const is_passed = is_contain_at && is_contain_dot && is_not_contain_spaces;
+        return [<>
+            {is_passed ? <></> : <ValidationCriteria text={"Некорректный email"} value={false}/>}
+        </>, is_passed];
     }
 
-    function validate_password(password: string, repeat_password: string) {
+    function validate_password(password: string, repeat_password: string): [React.ReactNode, boolean] {
         const is_passwords_match = password.length > 0 && password === repeat_password;
         const is_length = password.length >= 10;
         const is_contain_upper = password.toLowerCase() !== password;
@@ -53,6 +65,7 @@ export default function Module({type = "login"}: ModuleProps) {
         const digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
         let is_contain_digits = false;
         digits.forEach((digit) => {if (password.includes(digit)) is_contain_digits = true});
+
         return [<>
             <ValidationCriteria text={"Не менее 10 символов"} value={is_length}/>
             <ValidationCriteria text={"Содержит хотя бы одну заглавную букву"} value={is_contain_upper}/>
@@ -63,7 +76,7 @@ export default function Module({type = "login"}: ModuleProps) {
     }
 
     const [validation_password_component, validation_password] = validate_password(password, repeatPassword);
-    const validation_email = validate_email(email);
+    const [validation_email_component, validation_email] = validate_email(email);
     return <div className={"login-card flex-align flex-col"}>
         <h1>
             {type == "login" ? "Войти" : "Зарегистрироваться"}
@@ -78,6 +91,9 @@ export default function Module({type = "login"}: ModuleProps) {
                 onChange={e => setEmail(e.target.value)}
                 value={email}
             />
+            {!validation_email && <div className={"w-full"}>
+                {validation_email_component}
+            </div>}
             <input
                 className={"login-card__input"}
                 name={"password"}
@@ -103,7 +119,7 @@ export default function Module({type = "login"}: ModuleProps) {
                     aria-autocomplete={"list"}
                 />
             </>}
-            <button className={"login-card__button"} type={"submit"} disabled={!validation_password}>{type == "login" ? "Войти" : "Зарегистрироваться"}</button>
+            <button className={"login-card__button"} type={"submit"} disabled={!(validation_password && validation_email)}>{type == "login" ? "Войти" : "Зарегистрироваться"}</button>
         </Form>
             <hr/>
             <span>
